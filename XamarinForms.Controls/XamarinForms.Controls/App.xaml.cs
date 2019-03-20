@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinForms.Controls.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinForms.Controls
@@ -11,7 +12,7 @@ namespace XamarinForms.Controls
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new AnaSayfa();
         }
 
         protected override void OnStart()
