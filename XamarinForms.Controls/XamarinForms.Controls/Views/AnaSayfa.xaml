@@ -14,15 +14,20 @@
             <Button x:Name="btnDondur" Text="Click to Rotate Text!"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"/>
-            <Picker x:Name="cmbRenkler"
-                    Title="Renk Seçiniz">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Kırmızı</x:String>
-                        <x:String>Mavi</x:String>
-                        <x:String>Turuncu</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+            <DatePicker
+                x:Name="dtpTarih"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                />
+            <TimePicker
+                x:Name="dtpSaat"
+                Format="T"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+            />
+            <Picker x:Name="cmbKisiler"
+                    Title="Kişi Seçiniz"
+                    ItemsSource="{Binding Kullanicilar}">
             </Picker>
         </StackLayout>
     </ContentPage.Content>

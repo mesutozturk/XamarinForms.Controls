@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinForms.Controls.Model;
 
 namespace XamarinForms.Controls.Views
 {
@@ -15,10 +13,12 @@ namespace XamarinForms.Controls.Views
         public AnaSayfa()
         {
             InitializeComponent();
-            initMyComponent();
+            InitMyComponent();
+            BindingContext = new MockData();
         }
 
-        private void initMyComponent()
+        
+        private void InitMyComponent()
         {
             var red = Color.Red;
             var orange = Color.FromHex("FF6A00");
@@ -45,14 +45,33 @@ namespace XamarinForms.Controls.Views
                 lblMesaj.FontSize = rnd.Next(10, 40);
                 Button btn = (Button)sender;
                 btn.BackgroundColor = colors[rnd.Next(0, colors.Count)];
+                var tarih = dtpTarih.Date;
+                var span = DateTime.Now - tarih;
+                lblMesaj.Text = $"Fark {span.TotalDays} gündür";
+
+                lblMesaj.Text = $"{dtpSaat.Time}";
+
+            };
+            //cmbRenkler.ItemsSource = colors;
+            //cmbRenkler.SelectedIndexChanged += async (sender, e) =>
+            // {
+            //     if (cmbRenkler.SelectedItem == null) return;
+            //     string seciliRenk = cmbRenkler.SelectedItem.ToString();
+            //     await DisplayAlert("Renk Seçme İşlemi", $"Seçtiğiniz Renk: {seciliRenk}", "Tamam", "İptal");
+            // };
+
+            //cmbKisiler.ItemsSource = new MockData().Kullanicilar;
+            //cmbKisiler.ItemsSource = Kisiler;
+            cmbKisiler.SetBinding(Picker.ItemsSourceProperty, "Kullanicilar");
+            //cmbKisiler.ItemDisplayBinding = new Binding("Ad");
+            cmbKisiler.SelectedIndexChanged += (sender, e) =>
+            {
+                if (cmbKisiler.SelectedItem == null) return;
+                var seciliKisi = cmbKisiler.SelectedItem as Kullanici;
+                lblMesaj.Text = $"{seciliKisi.Ad} {seciliKisi.Soyad} - {seciliKisi.Email}";
             };
 
-            cmbRenkler.SelectedIndexChanged += async (sender, e) =>
-             {
-                 if (cmbRenkler.SelectedItem == null) return;
-                 string seciliRenk = cmbRenkler.SelectedItem.ToString();
-                 await DisplayAlert("Renk Seçme İşlemi", $"Seçtiğiniz Renk: {seciliRenk}", "Tamam", "İptal");
-             };
+
         }
 
         private void BtnDondur_Clicked(object sender, EventArgs e)
