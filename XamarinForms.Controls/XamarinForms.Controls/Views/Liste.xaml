@@ -4,10 +4,16 @@
              x:Class="XamarinForms.Controls.Views.Liste">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="AlbumView" RowHeight="100">
+            <ListView x:Name="AlbumView" RowHeight="100" SelectionMode="None">
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem CommandParameter="{Binding .}"
+                                          Text="More" />
+                                <MenuItem CommandParameter="{Binding .}"
+                                          Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
                             <StackLayout BackgroundColor="#eee"
                                          Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal">

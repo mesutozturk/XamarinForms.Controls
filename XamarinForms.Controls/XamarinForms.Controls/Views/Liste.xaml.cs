@@ -24,6 +24,24 @@ namespace XamarinForms.Controls.Views
 
         private void InitMyComponent()
         {
+            var moreAction = new MenuItem { Text = "More" };
+            moreAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
+            moreAction.Clicked += async (sender, e) => {
+                var mi = ((MenuItem)sender);
+                //Debug.WriteLine("More Context Action clicked: " + mi.CommandParameter);
+            };
+
+            var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
+            deleteAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
+            deleteAction.Clicked += async (sender, e) => {
+                var mi = ((MenuItem)sender);
+                //Debug.WriteLine("Delete Context Action clicked: " + mi.CommandParameter);
+            };
+            // add to the ViewCell's ContextActions property
+            
+            //ContextActions.Add(moreAction);
+            //ContextActions.Add(deleteAction);
+
             AlbumView.ItemSelected += async (sender, e) =>
             {
                 var seciliAlbum = e.SelectedItem as AlbumModel;
