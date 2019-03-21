@@ -19,6 +19,39 @@ namespace XamarinForms.Controls.Views
             InitializeComponent();
             LoadData();
             ListeyiDoldur();
+            InitMyComponent();
+        }
+
+        private void InitMyComponent()
+        {
+            AlbumView.ItemSelected += async (sender, e) =>
+            {
+                var seciliAlbum = e.SelectedItem as AlbumModel;
+
+                var sonuc = await DisplayActionSheet($"{seciliAlbum.title} ?", "Cancel", null, "Satınal", "Detay");
+                // Debug.WriteLine("Action: " + action);
+                switch (sonuc)
+                {
+                    case "Satınal":
+                        var browser = new WebView();
+                        browser.Source = seciliAlbum.url;
+                        var page = new ContentPage();
+                        page.Content = browser;
+                        browser.HorizontalOptions = LayoutOptions.FillAndExpand;
+                        browser.VerticalOptions = LayoutOptions.FillAndExpand;
+                        page.Title = seciliAlbum.title;
+                        //Content = browser;
+
+                        await Navigation.PushAsync(page);
+                        break;
+                    case "Detay":
+
+                        break;
+                    default:
+                        break;
+                }
+
+            };
         }
 
         private void ListeyiDoldur()

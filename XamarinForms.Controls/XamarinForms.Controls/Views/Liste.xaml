@@ -4,10 +4,24 @@
              x:Class="XamarinForms.Controls.Views.Liste">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="AlbumView">
-                <ListView.ItemTemplate>
+            <ListView x:Name="AlbumView" RowHeight="100">
+                <ListView.ItemTemplate >
                     <DataTemplate>
-                        <TextCell Text="{Binding title}" />
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#eee"
+                                         Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding image}" Aspect="AspectFill" HeightRequest ="100" WidthRequest="100" />
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding title}" FontSize="Large"
+                                               TextColor="#f35e20" HorizontalTextAlignment="Start" />
+                                        <Label Text="{Binding artist}"
+                                               HorizontalOptions="Start"
+                                               TextColor="#503026" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

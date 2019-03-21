@@ -11,8 +11,7 @@ namespace XamarinForms.Controls
         public App()
         {
             InitializeComponent();
-
-            MainPage = new Liste();
+            MainPage = new NavigationPage(new Liste());
         }
 
         protected override void OnStart()
