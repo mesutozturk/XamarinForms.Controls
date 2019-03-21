@@ -12,7 +12,7 @@ namespace XamarinForms.Controls
         {
             InitializeComponent();
 
-            MainPage = new KayitForm();
+            MainPage = new Liste();
         }
 
         protected override void OnStart()
